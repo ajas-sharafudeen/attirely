@@ -1,7 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb+srv://ajassharaf:74cb9F2e7PRGfDxh@cluster0.0aved.mongodb.net/')
+require('dotenv').config()
+
+mongoose.connect(process.env.MONGODB_URL)
 .then(()=> console.log('MongoDB connected'))
 .catch(err => console.log(err));
 
