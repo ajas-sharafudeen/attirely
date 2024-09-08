@@ -6,9 +6,10 @@ export default function CheckAuth({ isAuthenticated, user, children }) {
 
   //If user is not authenticated and/or user tries to access routes other than /login or /register, the user will be redirected back to login page for authentication
 
-  if (!isAuthenticated && !(
-    location.pathname.includes('/login') ||
-    location.pathname.includes('/register'))
+  if (
+    !isAuthenticated &&
+    !(location.pathname.includes('/login')
+      || location.pathname.includes('/register'))
   ) {
     return <Navigate to="/auth/login" />
   }
