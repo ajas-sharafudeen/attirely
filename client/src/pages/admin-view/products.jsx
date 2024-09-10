@@ -25,10 +25,7 @@ export default function AdminProducts() {
   const [imageLoadingState, setImageLoadingState] = useState(false)
 
   function onSubmit() {}
-
-  function onSubmit() {
   
-
   return (
     <Fragment>
       <div className="mb-4 w-full flex justify-end">
