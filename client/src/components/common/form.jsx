@@ -1,4 +1,5 @@
 import {
+  Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
@@ -50,7 +51,7 @@ export default function CommonForm({ formControls, formData, setFormData, onSubm
             value={value}
           >
             <SelectTrigger className='w-full'>
-              <SelectValue placeholder={getControlItem.placeholder} />
+              <SelectValue placeholder={getControlItem.label} />
             </SelectTrigger>
             <SelectContent>
               {
