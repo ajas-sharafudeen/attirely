@@ -16,7 +16,7 @@ const types = {
   TEXTAREA: 'textarea'
 }
 
-export default function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText }) {
+export default function CommonForm({ formControls, formData, setFormData, onSubmit, buttonText, isBtnDisabled }) {
 
   function renderInputsByComponentType(getControlItem) {
     let element = null
@@ -117,7 +117,7 @@ export default function CommonForm({ formControls, formData, setFormData, onSubm
             </div>
           ))}
       </div>
-      <Button type='submit' className='mt-2 w-full'>
+      <Button disabled={isBtnDisabled} type='submit' className='mt-2 w-full'>
         {buttonText || 'Submit'}
       </Button>
     </form>
