@@ -1,18 +1,26 @@
 import ProductFilter from "@/components/shopping-view/filter";
+import ShoppingProductTile from "@/components/shopping-view/product-tile";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 import { sortOptions } from "@/config";
-import { fetchAllProducts } from "@/store/admin/products-slice";
+import { fetchAllFilteredProducts } from "@/store/shop/products-slice";
 import { ArrowUpDownIcon } from "lucide-react";
 import { useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function ShoppingListing() {
   const dispatch = useDispatch()
-  //fetch list of products
+  const { productList } = useSelector(state => state.shopProducts)
+
   useEffect(() => {
-    dispatch(fetchAllProducts())
-  }, [])
+    dispatch(fetchAllFilteredProducts())
+  }, [dispatch])
+
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-6 p-4 md:p-6">
@@ -41,8 +49,13 @@ export default function ShoppingListing() {
             </DropdownMenu>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {
+            productList && productList.length > 0 ?
+              productList.map(productItem => (
+                <ShoppingProductTile product={productItem} />
+              )) : null
+          }
         </div>
       </div>
     </div>
