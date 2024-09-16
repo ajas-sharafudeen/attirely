@@ -12,22 +12,23 @@ export default function ProductFilter() {
       </div>
       <div className="p-4 space-y-4">
         {
-          Object.keys(filterOptions).map(keyItem => <Fragment>
-            <div>
-              <h3 className="text-base font-bold">{keyItem}</h3>
-              <div className="grid gap-2 mt-2">
-                {
-                  filterOptions[keyItem].map(option => (
-                    <Label className='flex font-medium items-center gap-2'>
-                      <Checkbox />
-                      {option.label}
-                    </Label>
-                  ))
-                }
+          Object.keys(filterOptions).map(keyItem =>
+            <Fragment>
+              <div>
+                <h3 className="text-base font-bold">{keyItem}</h3>
+                <div className="grid gap-2 mt-2">
+                  {
+                    filterOptions[keyItem].map(option => (
+                      <Label className='flex font-medium items-center gap-2'>
+                        <Checkbox />
+                        {option.label}
+                      </Label>
+                    ))
+                  }
+                </div>
               </div>
-            </div>
-            <Separator />
-          </Fragment>
+              <Separator />
+            </Fragment>
           )
         }
       </div>
