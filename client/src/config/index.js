@@ -119,7 +119,7 @@ export const shoppingViewHeaderMenuItems = [
   },
   {
     id: 'kids',
-    label: 'kids',
+    label: 'Kids',
     path: '/shop/listing',
   },
   {
@@ -138,6 +138,23 @@ export const shoppingViewHeaderMenuItems = [
     path: '/shop/listing',
   },
 ];
+
+export const categoryOptionsMap = {
+  men: 'Men',
+  women: 'Women',
+  kids: 'Kids',
+  accessories: 'Accessories',
+  footwear: 'Footwear',
+};
+
+export const brandOptionsMap = {
+  nike: 'Nike',
+  adidas: 'Adidas',
+  puma: 'Puma',
+  levi: "Levi's",
+  zara: 'Zara',
+  'h&m': 'H&M',
+};
 
 export const filterOptions = {
   category: [
