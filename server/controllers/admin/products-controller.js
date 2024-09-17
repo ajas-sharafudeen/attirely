@@ -63,7 +63,7 @@ const fetchAllProducts = async (req, res) => {
     const listOfProducts = await Product.find({});
     res.status(200).json({
       success: true,
-      message: listOfProducts,
+      data: listOfProducts,
     });
   } catch (error) {
     console.log(error);
