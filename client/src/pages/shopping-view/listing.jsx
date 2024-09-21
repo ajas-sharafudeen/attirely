@@ -37,7 +37,6 @@ export default function ShoppingListing() {
   const dispatch = useDispatch()
   const { productList, productDetails } = useSelector(state => state.shopProducts)
   const { user } = useSelector(state => state.auth)
-  const { cartItems } = useSelector(state => state.shopCart)
   const [filters, setFilters] = useState({})
   const [sort, setSort] = useState(null)
   const [searchParams, setSearchParams] = useSearchParams()
@@ -100,8 +99,6 @@ export default function ShoppingListing() {
   useEffect(() => {
     if (productDetails !== null) setOpenDetailsDialog(true)
   }, [productDetails])
-
-  console.log(cartItems, 'cartItems');
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
