@@ -10,13 +10,36 @@ import { logoutUser } from "@/store/auth-slice";
 import UserCartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cart-slice";
+import { Label } from "../ui/label";
 
 function MenuItems() {
-  return <nav className="flex flex-col mb-3 lg:md-0 lg:items-center gap-6 lg:flex-row">
-    {
-      shoppingViewHeaderMenuItems.map(menuItem => <Link className="text-sm font-medium" key={menuItem.id} to={menuItem.path}>{menuItem.label}</Link>)
-    }
-  </nav>
+
+  const navigate = useNavigate()
+
+  function handleNavigate(getCurrentMenuItem) {
+    sessionStorage.removeItem('filters')
+    const currentFilter = getCurrentMenuItem.id !== 'home' ?
+      {
+        category: [getCurrentMenuItem.id]
+      } : null
+
+    sessionStorage.setItem('filters', JSON.stringify(currentFilter))
+    navigate(getCurrentMenuItem.path)
+  }
+  return (
+    <nav className="flex flex-col mb-3 lg:md-0 lg:items-center gap-6 lg:flex-row">
+      {
+        shoppingViewHeaderMenuItems.map(menuItem =>
+          <Label
+            onClick={() => handleNavigate(menuItem)}
+            className="text-sm font-medium cursor-pointer"
+            key={menuItem.id}
+          >
+            {menuItem.label}
+          </Label>)
+      }
+    </nav>
+  )
 }
 
 function HeaderRightContent() {
@@ -34,42 +57,41 @@ function HeaderRightContent() {
     dispatch(fetchCartItems(user?.id))
   }, [dispatch])
 
-  console.log(cartItems, 'AJaas');
-
-
-  return <div className="flex lg:items-center lg:flex-row flex-col gap-4">
-    <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
-      <Button onClick={() => setOpenCartSheet(true)} variant='outline' size='icon'>
-        <ShoppingCart className="w-6 h-6" />
-        <span className="sr-only">User cart</span>
-      </Button>
-      <UserCartWrapper cartItems={cartItems && cartItems.items && cartItems.items.length > 0 ? cartItems.items : ''} />
-    </Sheet>
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Avatar className='bg-black'>
-          <AvatarFallback className='bg-black text-white font-extrabold'>
-            {user?.userName[0].toUpperCase()}
-          </AvatarFallback>
-        </Avatar>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent side='right' className='w-56'>
-        <DropdownMenuLabel>
-          Logged in as {user?.userName}
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => navigate('/shop/account')}>
-          <UserRoundCog className="mr-2 h-4 w-4" />
-          Account
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleLogout}>
-          <LogOut className="mr-2 h-4 w-4" />
-          Logout
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  </div>
+  return (
+    <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+      <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
+        <Button onClick={() => setOpenCartSheet(true)} variant='outline' size='icon'>
+          <ShoppingCart className="w-6 h-6" />
+          <span className="sr-only">User cart</span>
+        </Button>
+        <UserCartWrapper cartItems={cartItems && cartItems.items && cartItems.items.length > 0 ? cartItems.items : ''} />
+      </Sheet>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Avatar className='bg-black'>
+            <AvatarFallback className='bg-black text-white font-extrabold'>
+              {user?.userName[0].toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent side='right' className='w-56'>
+          <DropdownMenuLabel>
+            Logged in as {user?.userName}
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={() => navigate('/shop/account')}>
+            <UserRoundCog className="mr-2 h-4 w-4" />
+            Account
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={handleLogout}>
+            <LogOut className="mr-2 h-4 w-4" />
+            Logout
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  )
 }
 
 export default function ShoppingHeader() {
