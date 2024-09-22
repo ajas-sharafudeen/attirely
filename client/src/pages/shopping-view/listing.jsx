@@ -42,7 +42,7 @@ export default function ShoppingListing() {
   const [sort, setSort] = useState(null)
   const [searchParams, setSearchParams] = useSearchParams()
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false)
-  const { toast } = useToast()
+  const {toast} = useToast()
 
   function handleSort(value) {
     setSort(value)
