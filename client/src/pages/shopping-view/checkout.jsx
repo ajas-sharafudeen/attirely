@@ -110,11 +110,10 @@ export default function ShoppingCheckout() {
             </div>
           </div>
           <div className="mt-4 w-full">
-            <Button
-              onClick={() => handleInitiatePaypalPayment()}
-              className="w-full"
-            >
-              Checkout with PayPal
+            <Button onClick={handleInitiatePaypalPayment} className="w-full">
+              {isPaymentStart
+                ? 'Processing Paypal Payment...'
+                : 'Checkout with Paypal'}
             </Button>
           </div>
         </div>
