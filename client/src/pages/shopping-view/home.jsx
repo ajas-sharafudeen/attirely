@@ -15,7 +15,10 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllFilteredProducts } from '@/store/shop/products-slice';
+import {
+  fetchAllFilteredProducts,
+  fetchProductDetails,
+} from '@/store/shop/products-slice';
 import ShoppingProductTile from '@/components/shopping-view/product-tile';
 import { useNavigate } from 'react-router-dom';
 import { addToCart, fetchCartItems } from '@/store/shop/cart-slice';
@@ -50,7 +53,7 @@ export default function ShoppingHome() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const toast = useToast();
+  const { toast } = useToast();
 
   const slides = [bannerOne, bannerTwo, bannerThree];
 
