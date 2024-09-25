@@ -15,14 +15,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllOrdersByUserId,
   getOrderDetails,
+  resetOrderDetails,
 } from '@/store/shop/order-slice';
 import { Badge } from '../ui/badge';
 
 export default function ShoppingOrders() {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
-  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { orderList, orderDetails } = useSelector((state) => state.shopOrder);
+  const dispatch = useDispatch();
 
   function handleFetchOrderDetails(getId) {
     dispatch(getOrderDetails(getId));
@@ -79,7 +80,10 @@ export default function ShoppingOrders() {
                     <TableCell>
                       <Dialog
                         open={openDetailsDialog}
-                        onOpenChange={setOpenDetailsDialog}
+                        onOpenChange={() => {
+                          setOpenDetailsDialog(false);
+                          dispatch(resetOrderDetails());
+                        }}
                       >
                         <Button
                           onClick={() =>
