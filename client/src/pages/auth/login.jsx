@@ -1,35 +1,35 @@
-import CommonForm from "@/components/common/form";
-import { loginFormControls } from "@/config";
-import { useToast } from "@/hooks/use-toast";
-import { loginUser } from "@/store/auth-slice";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import CommonForm from '@/components/common/form';
+import { loginFormControls } from '@/config';
+import { useToast } from '@/hooks/use-toast';
+import { loginUser } from '@/store/auth-slice';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const initialState = {
   email: '',
-  password: ''
-}
+  password: '',
+};
 
 export default function AuthLogin() {
-  const [formData, setFormData] = useState(initialState)
-  const dispatch = useDispatch()
-  const { toast } = useToast()
+  const [formData, setFormData] = useState(initialState);
+  const dispatch = useDispatch();
+  const { toast } = useToast();
 
   function onSubmit(event) {
-    event.preventDefault()
-    dispatch(loginUser(formData)).then(data => {
+    event.preventDefault();
+    dispatch(loginUser(formData)).then((data) => {
       if (data?.payload?.success) {
         toast({
           title: data?.payload?.message,
-        })
+        });
       } else {
         toast({
           title: data?.payload?.message,
-          variant: 'destructive'
-        })
+          variant: 'destructive',
+        });
       }
-    })
+    });
   }
 
   return (
@@ -42,7 +42,7 @@ export default function AuthLogin() {
           Don't have an account?
           <Link
             className="font-bold ml-2 text-primary hover:underline"
-            to='/auth/register'
+            to="/auth/register"
           >
             Register
           </Link>
@@ -56,5 +56,5 @@ export default function AuthLogin() {
         onSubmit={onSubmit}
       />
     </div>
-  )
+  );
 }
