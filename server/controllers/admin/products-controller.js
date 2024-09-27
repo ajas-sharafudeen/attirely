@@ -15,7 +15,7 @@ const handleImageUpload = async (req, res) => {
     console.log(error);
     res.json({
       success: false,
-      message: 'error occured',
+      message: 'Error occured',
     });
   }
 };
@@ -32,6 +32,7 @@ const addProduct = async (req, res) => {
       price,
       salePrice,
       totalStock,
+      averageReview,
     } = req.body;
     const newlyCreatedProduct = new Product({
       image,
@@ -42,6 +43,7 @@ const addProduct = async (req, res) => {
       price,
       salePrice,
       totalStock,
+      averageReview,
     });
 
     await newlyCreatedProduct.save();
@@ -86,6 +88,7 @@ const editProduct = async (req, res) => {
       price,
       salePrice,
       totalStock,
+      averageReview,
     } = req.body;
 
     let findProduct = await Product.findById(id);
