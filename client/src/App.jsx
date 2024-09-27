@@ -24,7 +24,7 @@ import PaymentSuccessPage from './pages/shopping-view/payment-success';
 import SearchProducts from './pages/shopping-view/search';
 
 function App() {
-  const { isAuthenticated, user, isLoading } = useSelector(
+  const { user, isAuthenticated, isLoading } = useSelector(
     (state) => state.auth
   );
   const dispatch = useDispatch();
