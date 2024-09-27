@@ -50,7 +50,7 @@ export const checkAuth = createAsyncThunk('/auth/checkauth', async () => {
       withCredentials: true,
       headers: {
         'Cache-Control':
-          'no-store, no-cache, must-revalidate , post-revalidate',
+          'no-store, no-cache, must-revalidate , proxy-revalidate',
       },
     }
   );
@@ -84,7 +84,7 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload.success ? action.payload.user : null;
-        state.isAuthenticated = action.payload.success ? true : false;
+        state.isAuthenticated = action.payload.success;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -97,7 +97,7 @@ const authSlice = createSlice({
       .addCase(checkAuth.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload.success ? action.payload.user : null;
-        state.isAuthenticated = action.payload.success ? true : false;
+        state.isAuthenticated = action.payload.success;
       })
       .addCase(checkAuth.rejected, (state, action) => {
         state.isLoading = false;
