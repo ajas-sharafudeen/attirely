@@ -5,7 +5,7 @@ import UserCartItemsContent from '@/components/shopping-view/cart-items-content'
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { createNewOrder } from '@/store/shop/order-slice';
-import { toast } from '@/hooks/use-toast';
+import { useToast } from '@/hooks/use-toast';
 
 export default function ShoppingCheckout() {
   const { cartItems } = useSelector((state) => state.shopCart);
@@ -14,6 +14,7 @@ export default function ShoppingCheckout() {
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
   const [isPaymentStart, setIsPaymentStart] = useState(false);
   const dispatch = useDispatch();
+  const toast = useToast();
 
   const totalCartAmount =
     cartItems && cartItems.items && cartItems.items.length > 0
@@ -78,7 +79,6 @@ export default function ShoppingCheckout() {
     console.log(orderData);
 
     dispatch(createNewOrder(orderData)).then((data) => {
-      console.log(data, 'ajas');
       if (data?.payload?.success) {
         setIsPaymentStart(true);
       } else {
@@ -109,7 +109,7 @@ export default function ShoppingCheckout() {
           <div className="mt-8 space-y-4">
             <div className="flex justify-between">
               <span className="font-bold">Total</span>
-              <span className="font-bold">{totalCartAmount}</span>
+              <span className="font-bold">${totalCartAmount}</span>
             </div>
           </div>
           <div className="mt-4 w-full">
