@@ -44,8 +44,8 @@ const brandsWithIcon = [
   { id: 'adidas', label: 'Adidas', icon: WashingMachine },
   { id: 'puma', label: 'Puma', icon: ShoppingBasket },
   { id: 'levi', label: "Levi's", icon: Airplay },
-  { id: 'zara', label: 'Zara', icon: Images },
-  { id: 'h&m', label: 'H&M', icon: Heater },
+  { id: 'ua', label: 'Under Armour', icon: Images },
+  { id: 'lacoste', label: 'Lacoste', icon: Heater },
 ];
 export default function ShoppingHome() {
   const [currentSlide, setCurrentSlide] = useState(0);
