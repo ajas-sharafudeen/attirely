@@ -1,20 +1,12 @@
 import { Button } from '@/components/ui/button';
-import bannerOne from '../../assets/banner-1.webp';
-import bannerTwo from '../../assets/banner-2.webp';
-import bannerThree from '../../assets/banner-3.webp';
 import {
-  Airplay,
   BabyIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   CloudLightning,
-  Heater,
-  Images,
-  Shirt,
+  SquareArrowOutUpRight,
   ShirtIcon,
-  ShoppingBasket,
-  UmbrellaIcon,
-  WashingMachine,
+  Footprints,
   WatchIcon,
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -36,16 +28,16 @@ const categoriesWithIcon = [
   { id: 'women', label: 'Women', icon: CloudLightning },
   { id: 'kids', label: 'Kids', icon: BabyIcon },
   { id: 'accessories', label: 'Accessories', icon: WatchIcon },
-  { id: 'footwear', label: 'Footwear', icon: UmbrellaIcon },
+  { id: 'footwear', label: 'Footwear', icon: Footprints },
 ];
 
 const brandsWithIcon = [
-  { id: 'nike', label: 'Nike', icon: Shirt },
-  { id: 'adidas', label: 'Adidas', icon: WashingMachine },
-  { id: 'puma', label: 'Puma', icon: ShoppingBasket },
-  { id: 'levi', label: "Levi's", icon: Airplay },
-  { id: 'ua', label: 'Under Armour', icon: Images },
-  { id: 'lacoste', label: 'Lacoste', icon: Heater },
+  { id: 'nike', label: 'Nike', icon: SquareArrowOutUpRight },
+  { id: 'adidas', label: 'Adidas', icon: SquareArrowOutUpRight },
+  { id: 'puma', label: 'Puma', icon: SquareArrowOutUpRight },
+  { id: 'levi', label: "Levi's", icon: SquareArrowOutUpRight },
+  { id: 'ua', label: 'Under Armour', icon: SquareArrowOutUpRight },
+  { id: 'lacoste', label: 'Lacoste', icon: SquareArrowOutUpRight },
 ];
 export default function ShoppingHome() {
   const [currentSlide, setCurrentSlide] = useState(0);
