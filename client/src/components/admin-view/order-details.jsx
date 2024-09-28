@@ -89,7 +89,12 @@ export default function AdminOrderDetailsView({ orderDetails }) {
               {orderDetails?.cartItems && orderDetails?.cartItems.length > 0
                 ? orderDetails?.cartItems.map((item) => (
                     <li className="flex items-center justify-between">
-                      <span>Title: {item.title}</span>
+                      <span>
+                        Title:
+                        {item.title.length > 18
+                          ? item.title.substring(0, 18) + '...'
+                          : item.title}
+                      </span>
                       <span>Quantity: {item.quantity}</span>
                       <span>Price: $ {item.price}</span>
                     </li>
